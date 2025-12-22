@@ -2,7 +2,7 @@ import React from 'react'
 import "tailwindcss";
 const App = () => {
   return (
-    <div>App</div>
+    <div>e</div>
   )
 }
 
