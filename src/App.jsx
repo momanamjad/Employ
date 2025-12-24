@@ -7,13 +7,11 @@ import { getLocalStorage, setLocalStorage } from './utils/LocalStorage';
 
 
 const App = () => {
-  useEffect(()=>{
-  // setLocalStorage();
-  getLocalStorage();
-})
+const [user,setUser]=React.useState(null)
   return (
  <>
- <Login/>
+ {!user?<Login/>:''}
+ 
  {/* <EmployDashboard/> */}
   {/* <AdminDashboard/> */}
  </>
