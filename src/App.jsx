@@ -3,12 +3,13 @@ import "tailwindcss";
 import Login from './components/Auth/Login';
 import EmployDashboard from './components/Auth/dashboard/EmployDashboard';
 import AdminDashboard from './components/Auth/dashboard/AdminDashboard';
-import { setLocalStorage } from './utils/LocalStorage';
+import { getLocalStorage, setLocalStorage } from './utils/LocalStorage';
 
 
 const App = () => {
   useEffect(()=>{
-  setLocalStorage();
+  // setLocalStorage();
+  getLocalStorage();
 })
   return (
  <>
