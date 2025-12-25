@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import handleLogin from "../../App.jsx";
 
 const Login = ({handleLogin}) => {
 
