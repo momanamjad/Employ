@@ -13,8 +13,8 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={userdata}>{ }</AuthContext.Provider>
+    <AuthContext.Provider value={userdata}>{children}</AuthContext.Provider>
   );
 };
 
-export default AuthProvider;
+export default  ;
