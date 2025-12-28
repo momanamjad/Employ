@@ -17,4 +17,4 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export default  ;
+export default AuthProvider;
