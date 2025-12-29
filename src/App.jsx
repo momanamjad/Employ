@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { use, useContext, useEffect } from 'react'
 import "tailwindcss";
 import Login from './components/Auth/Login';
 import EmployDashboard from './components/Auth/dashboard/EmployDashboard';
@@ -8,6 +8,7 @@ import { AuthContext } from './context/AuthProvider';
 
 const App = () => {
 const [user,setUser]=React.useState(null)
+ 
 
 const handleLogin=(email,password)=>{
   if (email=='admin@me.com' && password=='123') {
@@ -17,8 +18,8 @@ const handleLogin=(email,password)=>{
   }else{
      alert('invalid credentials');
   }}
-const data=useContext(AuthContext)
-
+const  authData=useContext(AuthContext)
+console.log(authData.employees)
   return (
  <>
  {!user?<Login handleLogin={handleLogin}/>:''}
