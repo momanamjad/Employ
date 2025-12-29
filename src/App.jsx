@@ -8,7 +8,8 @@ import { AuthContext } from './context/AuthProvider';
 
 const App = () => {
 const [user,setUser]=React.useState(null)
- 
+ const  authData=useContext(AuthContext)
+console.log(authData)
 
 const handleLogin=(email,password)=>{
   if (email=='admin@me.com' && password=='123') {
@@ -18,8 +19,7 @@ const handleLogin=(email,password)=>{
   }else{
      alert('invalid credentials');
   }}
-const  authData=useContext(AuthContext)
-console.log(authData.employees)
+
   return (
  <>
  {!user?<Login handleLogin={handleLogin}/>:''}
