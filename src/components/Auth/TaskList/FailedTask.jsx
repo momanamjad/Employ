@@ -13,7 +13,7 @@ const FailedTask = () => {
            
         </p>
         <div>
-  <button className='w-full'>Failed/</button>   
+  <button className='w-full'>completed/</button>   
         </div>
       </div>
   )
