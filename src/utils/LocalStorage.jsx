@@ -1,10 +1,12 @@
 const employees = [
   {
     id: 1,
+    firstName: "Ali",
     email: "employee1@example.com",
     password: "123",
     tasks: [
       {
+        statusCode: 1, // active
         active: true,
         newTask: true,
         completed: false,
@@ -14,6 +16,7 @@ const employees = [
         category: "Design"
       },
       {
+        statusCode: 3, // completed
         active: false,
         newTask: false,
         completed: true,
@@ -23,6 +26,7 @@ const employees = [
         category: "Development"
       },
       {
+        statusCode: 4, // failed
         active: false,
         newTask: false,
         completed: false,
@@ -35,10 +39,12 @@ const employees = [
   },
   {
     id: 2,
+    firstName: "Ahmed",
     email: "employee2@example.com",
     password: "123",
     tasks: [
       {
+        statusCode: 1,
         active: true,
         newTask: true,
         completed: false,
@@ -48,6 +54,7 @@ const employees = [
         category: "Frontend"
       },
       {
+        statusCode: 3,
         active: false,
         newTask: false,
         completed: true,
@@ -57,6 +64,7 @@ const employees = [
         category: "Optimization"
       },
       {
+        statusCode: 1,
         active: true,
         newTask: false,
         completed: false,
@@ -66,6 +74,7 @@ const employees = [
         category: "UI/UX"
       },
       {
+        statusCode: 4,
         active: false,
         newTask: false,
         completed: false,
@@ -78,10 +87,12 @@ const employees = [
   },
   {
     id: 3,
+    firstName: "Usman",
     email: "employee3@example.com",
     password: "123",
     tasks: [
       {
+        statusCode: 1,
         active: true,
         newTask: true,
         completed: false,
@@ -91,6 +102,7 @@ const employees = [
         category: "Testing"
       },
       {
+        statusCode: 3,
         active: false,
         newTask: false,
         completed: true,
@@ -100,6 +112,7 @@ const employees = [
         category: "Maintenance"
       },
       {
+        statusCode: 1,
         active: true,
         newTask: false,
         completed: false,
@@ -112,10 +125,12 @@ const employees = [
   },
   {
     id: 4,
+    firstName: "Hassan",
     email: "employee4@example.com",
     password: "123",
     tasks: [
       {
+        statusCode: 1,
         active: true,
         newTask: true,
         completed: false,
@@ -125,6 +140,7 @@ const employees = [
         category: "Documentation"
       },
       {
+        statusCode: 3,
         active: false,
         newTask: false,
         completed: true,
@@ -134,6 +150,7 @@ const employees = [
         category: "Communication"
       },
       {
+        statusCode: 4,
         active: false,
         newTask: false,
         completed: false,
@@ -143,6 +160,7 @@ const employees = [
         category: "DevOps"
       },
       {
+        statusCode: 1,
         active: true,
         newTask: false,
         completed: false,
@@ -155,10 +173,12 @@ const employees = [
   },
   {
     id: 5,
+    firstName: "Bilal",
     email: "employee5@example.com",
     password: "123",
     tasks: [
       {
+        statusCode: 1,
         active: true,
         newTask: true,
         completed: false,
@@ -168,6 +188,7 @@ const employees = [
         category: "Admin"
       },
       {
+        statusCode: 3,
         active: false,
         newTask: false,
         completed: true,
@@ -177,6 +198,7 @@ const employees = [
         category: "Security"
       },
       {
+        statusCode: 1,
         active: true,
         newTask: false,
         completed: false,
@@ -187,22 +209,24 @@ const employees = [
       }
     ]
   }
-]
+];
 
 const admin = [
   {
     id: 101,
+    firstName: "Admin",
     email: "admin@example.com",
     password: "123"
   }
-]
+];
+
 export const setLocalStorage = () => {
-  localStorage.setItem("employees", JSON.stringify(employees))
-  localStorage.setItem("admin", JSON.stringify(admin))
-}
+  localStorage.setItem("employees", JSON.stringify(employees));
+  localStorage.setItem("admin", JSON.stringify(admin));
+};
 
 export const getLocalStorage = () => {
-  const employees = JSON.parse(localStorage.getItem("employees")) || []
-  const admin = JSON.parse(localStorage.getItem("admin")) || []
-  return { employees, admin }
-}
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
+  const admin = JSON.parse(localStorage.getItem("admin")) || [];
+  return { employees, admin };
+};

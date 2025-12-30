@@ -1,6 +1,7 @@
 import React from "react";
 
-const TaskListNo = () => {
+const TaskListNo = ({ data }) => {
+  console.log(data);
   return (
     <div className="flex screen justify-between gap-5 ">
       <div className="w-[45%] py-6 px-9 bg-red-400 mt-10 rounded-xl    ">
