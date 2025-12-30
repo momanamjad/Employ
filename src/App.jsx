@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect } from 'react'
+import React, {  useContext, useEffect, useState } from 'react'
 import "tailwindcss";
 import Login from './components/Auth/Login';
 import EmployDashboard from './components/Auth/dashboard/EmployDashboard';
@@ -9,27 +9,29 @@ import { AuthContext } from './context/AuthProvider';
 const App = () => {
 const [user,setUser]=React.useState(null)
  const  authData=useContext(AuthContext)
+ const [loggedInUserData,setLoggedInUserData]=useState(null)
 
- useEffect(()=>{
-  if(authData&&authData.admin){
-   const loggedInUser=localStorage.getItem('loggedInUser')
-    if(loggedInUser){
-      setUser(loggedInUser.role)
-    }
+//  useEffect(()=>{
+//   if(authData&&authData.admin){
+//    const loggedInUser=localStorage.getItem('loggedInUser')
+//     if(loggedInUser){
+//       setUser(loggedInUser.role)
+//     }
 
-  }
- },[authData])
+//   }
+//  },[authData])
  
 
 const handleLogin=(email,password)=>{
   if (email=='admin@me.com' && password=='123') {
     setUser('admin')
     localStorage.setItem('loggedInUser',JSON.stringify({role:`admin`}))
-  }  else if(authData&&authData.employees.find((e)=>e.email==email && e.password==password)){
-    setUser('employee')
-    localStorage.setItem('loggedInUser',JSON.stringify({role:`employee`}))
-
-
+  }  else if(authData){
+    const employee=authData.employees.find((e)=>e.email==email && e.password==password)
+    if(employee){
+      setUser('employee')
+      localStorage.setItem('loggedInUser',JSON.stringify({role:`employee`}))
+    }
   }else{
      alert('invalid credentials');
   }}
