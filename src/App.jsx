@@ -11,15 +11,25 @@ const [user,setUser]=React.useState(null)
  const  authData=useContext(AuthContext)
  const [loggedInUserData,setLoggedInUserData]=useState(null)
 
-//  useEffect(()=>{
-//   if(authData&&authData.admin){
-//    const loggedInUser=localStorage.getItem('loggedInUser')
-//     if(loggedInUser){
-//       setUser(loggedInUser.role)
-//     }
 
+//  useEffect(()=>{
+//   const loggedInUser=localStorage.getItem('loggedInUser')
+//   if(loggedInUser){
+//  const userData=JSON.parse(loggedInUser)
+//  setUser(userData.role)
+//  setLoggedInUserData(userData.data)
 //   }
-//  },[authData])
+//  },[])
+
+ useEffect(()=>{
+  if(authData&&authData.admin){
+   const loggedInUser=localStorage.getItem('loggedInUser')
+    if(loggedInUser){
+      setUser(loggedInUser.role)
+    }
+
+  }
+ },[authData])
  
 
 const handleLogin=(email,password)=>{
@@ -31,7 +41,7 @@ const handleLogin=(email,password)=>{
     if(employee){
       setUser('employee')
       setLoggedInUserData(employee)
-      localStorage.setItem('loggedInUser',JSON.stringify({role:`employee`}))
+      localStorage.setItem('loggedInUser',JSON.stringify({role:`employee`,data:employee}))
     }
   }else{
      alert('invalid credentials');
