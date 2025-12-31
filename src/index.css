@@ -12,3 +12,17 @@ body{
 #taskList::-webkit-scrollbar {
 display: none;
 }
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-modal {
+  animation: modal 0.25s ease-out;
+}
