@@ -33,6 +33,7 @@ const Login = ({handleLogin}) => {
           <input
             type="email"
             value={email}
+            autoComplete="email"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -50,6 +51,7 @@ const Login = ({handleLogin}) => {
           <input
             type="password"
             value={password}
+            autoComplete="current-password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
