@@ -5,7 +5,6 @@ const AllTask = () => {
   const { employees } = useContext(AuthContext);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
-  // ESC key close
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -20,7 +19,6 @@ const AllTask = () => {
   return (
     <div className="bg-[#1C1C1C] p-5 mt-5 rounded  text-white">
 
-      {/* Header */}
       <div className="bg-red-500 py-2 px-4 mb-3 flex justify-between rounded font-semibold">
         <h2 className="w-1/5">Employee</h2>
         <h5>Total</h5>
@@ -30,7 +28,6 @@ const AllTask = () => {
         <h5>Failed</h5>
       </div>
 
-      {/* Employee Rows */}
       <div className="overflow-auto max-h-[75vh]">
         {employees.map((emp) => {
           const total = emp.tasks.length;
@@ -57,7 +54,6 @@ const AllTask = () => {
         })}
       </div>
 
-      {/* ================= MODAL ================= */}
       {selectedEmployee && (
         <div
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
@@ -68,7 +64,6 @@ const AllTask = () => {
                        transform transition-all duration-300 animate-modal"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">
                 {selectedEmployee.firstName}'s Task Analytics
