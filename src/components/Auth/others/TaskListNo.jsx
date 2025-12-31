@@ -18,7 +18,7 @@ const TaskListNo = ({data}) => {
       </div>
       <div className="w-[45%] py-6 px-9 bg-yellow-400 mt-10 rounded-xl    ">
         <h2 className="text-3xl font-semibold">{data.tasks.filter(task => task.statusCode === 4).length}</h2>
-        <h3 className="text-xl font-medium">New Task</h3>
+        <h3 className="text-xl font-medium">Failed Tasks</h3>
       </div>
     </div>
   );
