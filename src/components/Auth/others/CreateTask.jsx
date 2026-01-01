@@ -6,10 +6,20 @@ const CreateTask = () => {
   const [taskDate, setTaskDate] = useState("");
   const [AssignTo, setAssignTo] = useState("");
   const [Category, setCategory] = useState("");
+  const [task, setTask] = useState([ ]);
 
   const submitHandler = (e) => {
+
+    
     e.preventDefault();
-    console.log("task created");
+    setTask(  { taskTitle, taskDescription, taskDate, AssignTo, Category,active:false,newTask:true,failed:false,completed:false });
+    console.log(task);
+    setAssignTo("");
+    setCategory("");
+    setTaskDate("");
+    setTaskDescription("");
+    setTaskTitle("");
+    
   };
 
   return (
@@ -25,6 +35,10 @@ const CreateTask = () => {
             <h3 className="text-sm text-gray-300 mb-0.5 ">Task Title</h3>
             <input
               type="text"
+              value={taskTitle}
+              onChange={(e) => {
+                setTaskTitle(e.target.value);
+              }}
               placeholder="make"
               className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400"
             />
@@ -32,6 +46,11 @@ const CreateTask = () => {
           <div>
             <h3 className="text-sm text-gray-300 mb-0.5 ">Date</h3>
             <input
+              required
+              value={taskDate}
+              onChange={(e) => {
+                setTaskDate(e.target.value);
+              }}
               type="date"
               className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400"
             />
@@ -39,7 +58,12 @@ const CreateTask = () => {
           <div>
             <h3 className="text-sm text-gray-300 mb-0.5 ">Assign to </h3>
             <input
+              required
               type="text"
+              value={AssignTo}
+              onChange={(e) => {
+                setAssignTo(e.target.value);
+              }}
               placeholder="employ Name"
               className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400"
             />
@@ -47,7 +71,12 @@ const CreateTask = () => {
           <div>
             <h3 className="text-sm text-gray-300 mb-0.5 ">Catagory</h3>
             <input
+              required
               type="text"
+              value={Category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
               placeholder="Design/Dev/etc"
               className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400"
             />
@@ -57,6 +86,11 @@ const CreateTask = () => {
         <div className="w-2/5 flex flex-col items-start">
           <h3 className="text-sm text-gray-300 mb-0.5 ">Description</h3>
           <textarea
+            required
+            value={taskDescription}
+            onChange={(e) => {
+              setTaskDescription(e.target.value);
+            }}
             className="w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400"
             name=""
             id=""
