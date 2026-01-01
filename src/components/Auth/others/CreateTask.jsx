@@ -13,7 +13,8 @@ const CreateTask = () => {
     
     e.preventDefault();
     setTask(  { taskTitle, taskDescription, taskDate, AssignTo, Category,active:false,newTask:true,failed:false,completed:false });
-    console.log(task);
+    const data=localStorage.getItem('employees')
+    console.log(JSON.stringify(data))
     setAssignTo("");
     setCategory("");
     setTaskDate("");

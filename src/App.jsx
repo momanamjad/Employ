@@ -12,14 +12,14 @@ const [user,setUser]=React.useState(null)
  const [loggedInUserData,setLoggedInUserData]=useState(null)
 
 
-//  useEffect(()=>{
-//   const loggedInUser=localStorage.getItem('loggedInUser')
-//   if(loggedInUser){
-//  const userData=JSON.parse(loggedInUser)
-//  setUser(userData.role)
-//  setLoggedInUserData(userData.data)
-//   }
-//  },[])
+ useEffect(()=>{
+  const loggedInUser=localStorage.getItem('loggedInUser')
+  if(loggedInUser){
+ const userData=JSON.parse(loggedInUser)
+ setUser(userData.role)
+ setLoggedInUserData(userData.data)
+  }
+ },[])
 
  useEffect(()=>{
   if(authData&&authData.admin){
@@ -50,8 +50,8 @@ const handleLogin=(email,password)=>{
   return (
  <>
  {!user?<Login handleLogin={handleLogin}/>:''}
-{user==`admin`?<AdminDashboard/>:''}
-{user==`employee`?<EmployDashboard data={loggedInUserData}/>:''}
+{user==`admin`?<AdminDashboard changeUser={setUser}/>:''}
+{user==`employee`?<EmployDashboard changeUser={setUser}  data={loggedInUserData}/>:''}
  </>
   )
 
