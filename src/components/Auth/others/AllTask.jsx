@@ -1,110 +1,31 @@
-import React, { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../../../context/AuthProvider";
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const AllTask = () => {
-  const { employees } = useContext(AuthContext);
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [userData, setUserData] = useContext(AuthContext); // Destructure correctly
 
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        setSelectedEmployee(null);
-      }
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
-
-  if (!employees || employees.length === 0) {
-    return (
-      <div className="bg-[#1C1C1C] p-5 mt-5 rounded text-white">
-        No employee data available
-      </div>
-    );
+  if (!userData || !userData.employees || userData.employees.length === 0) {
+    return <p className="text-white mt-10">No employee data available</p>;
   }
-else
+
   return (
-    <div className="bg-[#1C1C1C] p-5 mt-5 rounded text-white">
-
-      <div className="bg-red-500 py-2 px-4 mb-3 flex justify-between rounded font-semibold">
-        <h2 className="w-1/5">Employee</h2>
-        <h5>Total</h5>
-        <h5>New</h5>
-        <h5>Active</h5>
-        <h5>Completed</h5>
-        <h5>Failed</h5>
-      </div>
-
-      <div className="overflow-auto max-h-[75vh]">
-        {employees.map((emp) => {
-          const tasks = emp.tasks || [];
-
-          const total = tasks.length;
-          const newTasks = tasks.filter(t => t.newTask).length;
-          const active = tasks.filter(t => t.statusCode === 1).length;
-          const completed = tasks.filter(t => t.statusCode === 3).length;
-          const failed = tasks.filter(t => t.statusCode === 4).length;
-
-          return (
-            <div
-              key={emp.id}
-              onClick={() => setSelectedEmployee(emp)}
-              className="bg-emerald-600 hover:bg-emerald-500 cursor-pointer
-                         py-2 px-4 mb-2 flex justify-between rounded transition"
-            >
-              <h2 className="w-1/5">{emp.firstName}</h2>
-              <h5>{total}</h5>
-              <h5>{newTasks}</h5>
-              <h5>{active}</h5>
-              <h5>{completed}</h5>
-              <h5>{failed}</h5>
-            </div>
-          );
-        })}
-      </div>
-
-      {selectedEmployee && (
-        <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-          onClick={() => setSelectedEmployee(null)}
-        >
-          <div
-            className="bg-white text-black w-[600px] p-5 rounded"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">
-                {selectedEmployee.firstName}'s Task Analytics
-              </h2>
-              <button
-                onClick={() => setSelectedEmployee(null)}
-                className="text-red-600 text-xl font-bold"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="max-h-[400px] overflow-auto">
-              {selectedEmployee.tasks?.map((task, i) => (
-                <div
-                  key={i}
-                  className={`p-3 mb-2 rounded text-white
-                    ${task.statusCode === 1 && "bg-blue-500"}
-                    ${task.statusCode === 3 && "bg-green-500"}
-                    ${task.statusCode === 4 && "bg-red-500"}
-                  `}
-                >
-                  <h3 className="font-semibold">{task.title}</h3>
-                  <p className="text-sm">{task.description}</p>
-                  <span className="text-xs italic">{task.category}</span>
-                </div>
+    <div className="bg-[#1C1C1C] p-5 mt-5 rounded">
+      <h2 className="text-xl font-semibold text-white mb-4">All Employees and Tasks</h2>
+      <div className="space-y-4">
+        {userData.employees.map((employee, idx) => (
+          <div key={idx} className="bg-gray-800 p-4 rounded">
+            <h3 className="text-lg font-medium text-white">{employee.firstName} ({employee.email})</h3>
+            <p className="text-sm text-gray-400">Tasks: {employee.tasks.length}</p>
+            <ul className="mt-2 space-y-1">
+              {employee.tasks.map((task, taskIdx) => (
+                <li key={taskIdx} className="text-sm text-gray-300">
+                  - {task.title} ({task.category}) - Status: {task.active ? 'Active' : task.completed ? 'Completed' : task.failed ? 'Failed' : 'New'}
+                </li>
               ))}
-            </div>
-
+            </ul>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 };

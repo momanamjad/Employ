@@ -7,7 +7,7 @@ const CreateTask = () => {
   const [taskDate, setTaskDate] = useState("");
   const [AssignTo, setAssignTo] = useState("");
   const [Category, setCategory] = useState("");
-  const [newTask, setNewTask] = useState([]);
+  // const [newTask, setNewTask] = useState([]);
   const [userData, setUserData] = useContext(AuthContext);
   const submitHandler = (e) => {
   e.preventDefault();
@@ -28,6 +28,7 @@ const CreateTask = () => {
       elem.tasks.push(newTaskObj);
       elem.taskCounts.newTask += 1; // Now safe
     }
+    console.log('Updated userData:', { ...userData, employees: data });
   });
   setUserData({ ...userData, employees: data }); // Update context
   localStorage.setItem("employees", JSON.stringify(data)); // Persist
@@ -119,6 +120,7 @@ const CreateTask = () => {
         </div>
       </form>
     </div>
+    
   );
 };
 
