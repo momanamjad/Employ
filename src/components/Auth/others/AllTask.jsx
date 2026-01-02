@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const AllTask = () => {
-  const { employees } = useContext(AuthContext);
+  const [ userData, setUserData ] = useContext(AuthContext);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const AllTask = () => {
       </div>
 
       <div className="overflow-auto max-h-[75vh]">
-        {employees.map((emp) => {
+        {userData.map((emp) => {
           const total = emp.tasks.length;
           const newTasks = emp.tasks.filter(t => t.newTask).length;
           const active = emp.tasks.filter(t => t.statusCode === 1).length;

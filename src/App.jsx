@@ -7,8 +7,8 @@ import { AuthContext } from './context/AuthProvider';
 
 
 const App = () => {
-const [user,setUser]=React.useState(null)
- const  authData=useContext(AuthContext)
+const [user,setUser]=useState(null)
+ const authData=useContext(AuthContext)
  const [loggedInUserData,setLoggedInUserData]=useState(null)
 
 
@@ -57,4 +57,4 @@ const handleLogin=(email,password)=>{
 
 }
 
-export default App
+export default App  
