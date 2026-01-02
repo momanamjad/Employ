@@ -4,6 +4,7 @@ const employees = [
     firstName: "Ali",
     email: "employee1@example.com",
     password: "123",
+    taskCounts: { newTask: 1, active: 0, completed: 1, failed: 1 }, // Added
     tasks: [
       {
         statusCode: 1, // active
@@ -42,6 +43,7 @@ const employees = [
     firstName: "Ahmed",
     email: "employee2@example.com",
     password: "123",
+    taskCounts: { newTask: 2, active: 1, completed: 1, failed: 1 }, // Added
     tasks: [
       {
         statusCode: 1,
@@ -90,6 +92,7 @@ const employees = [
     firstName: "Usman",
     email: "employee3@example.com",
     password: "123",
+    taskCounts: { newTask: 1, active: 0, completed: 1, failed: 0 }, // Added
     tasks: [
       {
         statusCode: 1,
@@ -128,6 +131,7 @@ const employees = [
     firstName: "Hassan",
     email: "employee4@example.com",
     password: "123",
+    taskCounts: { newTask: 1, active: 0, completed: 1, failed: 1 }, // Added
     tasks: [
       {
         statusCode: 1,
@@ -176,6 +180,7 @@ const employees = [
     firstName: "Bilal",
     email: "employee5@example.com",
     password: "123",
+    taskCounts: { newTask: 1, active: 0, completed: 1, failed: 0 }, // Added
     tasks: [
       {
         statusCode: 1,

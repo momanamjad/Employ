@@ -21,15 +21,15 @@ const [user,setUser]=useState(null)
   }
  },[])
 
- useEffect(()=>{
-  if(authData&&authData.admin){
-   const loggedInUser=localStorage.getItem('loggedInUser')
-    if(loggedInUser){
-      setUser(loggedInUser.role)
+ useEffect(() => {
+  if (authData && authData.admin) {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role);
     }
-
   }
- },[authData])
+}, [authData]);
  
 
 const handleLogin=(email,password)=>{

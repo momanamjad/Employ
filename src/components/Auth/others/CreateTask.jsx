@@ -10,44 +10,34 @@ const CreateTask = () => {
   const [newTask, setNewTask] = useState([]);
   const [userData, setUserData] = useContext(AuthContext);
   const submitHandler = (e) => {
-    e.preventDefault();
-    setNewTask({
-      taskTitle,
-      taskDescription,
-      taskDate,
-      AssignTo,
-      Category,
-      active: false,
-      newTask: true,
-      failed: false,
-      completed: false,
-    });
-    const data = userData.employees;
-    data.forEach(function (elem) {
-      if (AssignTo === elem.firstName) {
-        elem.tasks.push({
-          taskTitle,
-          taskDescription,
-          taskDate,
-          AssignTo,
-          Category,
-          active: false,
-          newTask: true,
-          failed: false,
-          completed: false,
-        });
-        elem.taskCounts.newTask=elem.taskCounts.newTask + 1;
-        // setUserData({ ...userData, employees: data });
-        // localStorage.setItem("employees", JSON.stringify(data));
-      }
-    });
-    setAssignTo("");
-    setCategory("");
-    setTaskDate("");
-    setTaskDescription("");
-    setTaskTitle("");
+  e.preventDefault();
+  const newTaskObj = {
+    taskTitle,
+    taskDescription,
+    taskDate,
+    AssignTo,
+    Category,
+    active: false,
+    newTask: true,
+    failed: false,
+    completed: false,
   };
-
+  const data = [...userData.employees]; // Copy array
+  data.forEach((elem) => {
+    if (AssignTo === elem.firstName) {
+      elem.tasks.push(newTaskObj);
+      elem.taskCounts.newTask += 1; // Now safe
+    }
+  });
+  setUserData({ ...userData, employees: data }); // Update context
+  localStorage.setItem("employees", JSON.stringify(data)); // Persist
+  // Reset form
+  setAssignTo("");
+  setCategory("");
+  setTaskDate("");
+  setTaskDescription("");
+  setTaskTitle("");
+};
   return (
     <div className="p-5 bg-[#1C1C1C mt-7 rounded">
       <form

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const AllTask = () => {
-  const [ userData, setUserData ] = useContext(AuthContext);
+  const { employees } = useContext(AuthContext);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   useEffect(() => {
@@ -16,8 +16,16 @@ const AllTask = () => {
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
+  if (!employees || employees.length === 0) {
+    return (
+      <div className="bg-[#1C1C1C] p-5 mt-5 rounded text-white">
+        No employee data available
+      </div>
+    );
+  }
+else
   return (
-    <div className="bg-[#1C1C1C] p-5 mt-5 rounded  text-white">
+    <div className="bg-[#1C1C1C] p-5 mt-5 rounded text-white">
 
       <div className="bg-red-500 py-2 px-4 mb-3 flex justify-between rounded font-semibold">
         <h2 className="w-1/5">Employee</h2>
@@ -29,12 +37,14 @@ const AllTask = () => {
       </div>
 
       <div className="overflow-auto max-h-[75vh]">
-        {userData.map((emp) => {
-          const total = emp.tasks.length;
-          const newTasks = emp.tasks.filter(t => t.newTask).length;
-          const active = emp.tasks.filter(t => t.statusCode === 1).length;
-          const completed = emp.tasks.filter(t => t.statusCode === 3).length;
-          const failed = emp.tasks.filter(t => t.statusCode === 4).length;
+        {employees.map((emp) => {
+          const tasks = emp.tasks || [];
+
+          const total = tasks.length;
+          const newTasks = tasks.filter(t => t.newTask).length;
+          const active = tasks.filter(t => t.statusCode === 1).length;
+          const completed = tasks.filter(t => t.statusCode === 3).length;
+          const failed = tasks.filter(t => t.statusCode === 4).length;
 
           return (
             <div
@@ -60,8 +70,7 @@ const AllTask = () => {
           onClick={() => setSelectedEmployee(null)}
         >
           <div
-            className="bg-white text-black w-[600px] p-5 rounded
-                       transform transition-all duration-300 animate-modal"
+            className="bg-white text-black w-[600px] p-5 rounded"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
@@ -76,9 +85,8 @@ const AllTask = () => {
               </button>
             </div>
 
-            {/* Tasks */}
             <div className="max-h-[400px] overflow-auto">
-              {selectedEmployee.tasks.map((task, i) => (
+              {selectedEmployee.tasks?.map((task, i) => (
                 <div
                   key={i}
                   className={`p-3 mb-2 rounded text-white
@@ -102,4 +110,3 @@ const AllTask = () => {
 };
 
 export default AllTask;
-    

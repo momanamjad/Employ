@@ -1,14 +1,15 @@
+// filepath: c:\Users\DELL\Desktop\employ\src\components\Auth\dashboard\EmployDashboard.jsx
 import React from 'react'
 import Header from '../others/Header'
 import TaskListNo from '../others/TaskListNo'
 import TaskList from '../TaskList/TaskList'
 
-const EmployDashboard = ({props}) => {
+const EmployDashboard = ({ changeUser, data }) => {
   return (
     <div className='p-10 bg-[rgb(28,28,28)] h-screen'> 
-      <Header changeUser={props.changeUser}  data={props.data}/>
-      <TaskListNo data={props.data}/>
-      <TaskList data={props.data}/>
+      <Header changeUser={changeUser} data={data} />
+      <TaskListNo data={data} />
+      <TaskList data={data} />
     </div>
   )
 }
