@@ -12,7 +12,7 @@ const NewTask = ({data}) => {
         {data.description}
       </p>
       <div className="mt-4">
-        <button>Accept the Task</button>
+        <button>Accept  Task</button>
       </div>
     </div>
   );
