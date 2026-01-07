@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
+import TaskDetails from './TaskDetails';
 
 const AllTask = () => {
   const [userData, setUserData] = useContext(AuthContext);
   const [expanded, setExpanded] = useState({});
+  const [selectedTask, setSelectedTask] = useState(null);
 
   const removeTask = (empId, taskIdx) => {
     const updatedEmployees = userData.employees.map(emp => {
@@ -15,6 +17,7 @@ const AllTask = () => {
     });
     setUserData({ employees: updatedEmployees });
     localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+    setSelectedTask(null);
   };
 
   const reassignTask = (empId, taskIdx, newEmpId) => {
@@ -38,6 +41,7 @@ const AllTask = () => {
     });
     setUserData({ employees: updatedEmployees });
     localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+    setSelectedTask(null);
   };
 
   if (!userData || !userData.employees || userData.employees.length === 0) {
@@ -47,42 +51,55 @@ const AllTask = () => {
   return (
     <div className="bg-[#1C1C1C] p-5 mt-5 rounded">
       <h2 className="text-xl font-semibold text-white mb-4">All Employees and Tasks</h2>
-      <div className="space-y-4">
-        {userData.employees.map((employee, idx) => (
-          <div key={idx} className="bg-gray-800 p-4 rounded cursor-pointer" onClick={() => setExpanded(prev => ({ ...prev, [employee.id]: !prev[employee.id] }))}>
-            <h3 className="text-lg font-medium text-white flex justify-between">
-              {employee.firstName} ({employee.email})
-              <span>{expanded[employee.id] ? '▼' : '▶'}</span>
-            </h3>
-            <p className="text-sm text-gray-400">Tasks: {employee.tasks.length}</p>
-            {expanded[employee.id] && (
-              <ul className="mt-2 space-y-1">
-                {employee.tasks.map((task, taskIdx) => (
-                  <li key={taskIdx} className="text-sm text-gray-300 flex justify-between items-center">
-                    <span>- {task.title} ({task.category}) - Status: {task.active ? 'Active' : task.completed ? 'Completed' : task.failed ? 'Failed' : 'New'}</span>
-                    <div className="flex gap-2">
-                      <select defaultValue={employee.id} className="bg-gray-700 text-white text-xs p-1 rounded" onClick={(e) => e.stopPropagation()}>
-                        {userData.employees.map(emp => (
-                          <option key={emp.id} value={emp.id}>{emp.firstName}</option>
-                        ))}
-                      </select>
-                      <button onClick={(e) => {
-                        e.stopPropagation();
-                        const select = e.target.previousElementSibling;
-                        reassignTask(employee.id, taskIdx, select.value);
-                      }} className="bg-blue-500 text-white text-xs px-2 py-1 rounded">Reassign</button>
-                      <button onClick={(e) => {
-                        e.stopPropagation();
-                        removeTask(employee.id, taskIdx);
-                      }} className="bg-red-500 text-white text-xs px-2 py-1 rounded">Remove</button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </div>
+      {!selectedTask && (
+        <div className="space-y-4">
+          {userData.employees.map((employee, idx) => (
+            <div key={idx} className="bg-gray-800 p-4 rounded cursor-pointer" onClick={() => setExpanded(prev => ({ ...prev, [employee.id]: !prev[employee.id] }))}>
+              <h3 className="text-lg font-medium text-white flex justify-between">
+                {employee.firstName} ({employee.email})
+                <span>{expanded[employee.id] ? '▼' : '▶'}</span>
+              </h3>
+              <p className="text-sm text-gray-400">Tasks: {employee.tasks.length}</p>
+              {expanded[employee.id] && (
+                <ul className="mt-2 space-y-1">
+                  {employee.tasks.map((task, taskIdx) => (
+                    <li key={taskIdx} className="text-sm text-gray-300 flex justify-between items-center">
+                      <span onClick={(e) => { e.stopPropagation(); setSelectedTask({ empId: employee.id, taskIdx }); }} className="cursor-pointer">- {task.title} ({task.category}) - Status: {task.active ? 'Active' : task.completed ? 'Completed' : task.failed ? 'Failed' : 'New'}</span>
+                      <div className="flex gap-2">
+                        <select defaultValue={employee.id} className="bg-gray-700 text-white text-xs p-1 rounded" onClick={(e) => e.stopPropagation()}>
+                          {userData.employees.map(emp => (
+                            <option key={emp.id} value={emp.id}>{emp.firstName}</option>
+                          ))}
+                        </select>
+                        <button onClick={(e) => {
+                          e.stopPropagation();
+                          const select = e.target.previousElementSibling;
+                          reassignTask(employee.id, taskIdx, select.value);
+                        }} className="bg-blue-500 text-white text-xs px-2 py-1 rounded">Reassign</button>
+                        <button onClick={(e) => {
+                          e.stopPropagation();
+                          removeTask(employee.id, taskIdx);
+                        }} className="bg-red-500 text-white text-xs px-2 py-1 rounded">Remove</button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+      {selectedTask && (
+        <TaskDetails
+          task={userData.employees.find(e => e.id === selectedTask.empId).tasks[selectedTask.taskIdx]}
+          empId={selectedTask.empId}
+          taskIdx={selectedTask.taskIdx}
+          employees={userData.employees}
+          onRemove={removeTask}
+          onReassign={reassignTask}
+          onBack={() => setSelectedTask(null)}
+        />
+      )}
     </div>
   );
 };

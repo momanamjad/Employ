@@ -8,7 +8,7 @@ const AdminDashboard = (props) => {
   const [userData] = useContext(AuthContext);
 
   return (
-    <div className="h-screen w-full p-10">
+    <div className="h-screen w-full p-10 bg-[rgb(28,28,28)]">
       <Header changeUser={props.changeUser} />
       <CreateTask />
       {userData && userData.employees ? <AllTask /> : <p className="text-white mt-10">Loading employee data...</p>}
