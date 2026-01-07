@@ -1,6 +1,10 @@
 import React from "react";
 
-const NewTask = ({data}) => {
+const NewTask = ({data, index, updateTask}) => {
+  const handleAccept = () => {
+    updateTask(index, { active: true, newTask: false })
+  }
+
   return (
     <div className="shrink-0 h-full w-[300px] p-5 bg-yellow-400 rounded-xl">
       <div className="flex justify-between items-center">
@@ -12,7 +16,7 @@ const NewTask = ({data}) => {
         {data.description}
       </p>
       <div className="mt-4">
-        <button>Accept  the Task</button>
+        <button onClick={handleAccept} className="bg-blue-500 text-white px-4 py-2 rounded">Accept the Task</button>
       </div>
     </div>
   );
