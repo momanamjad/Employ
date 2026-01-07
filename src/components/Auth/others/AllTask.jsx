@@ -91,7 +91,7 @@ const AllTask = () => {
       )}
       {selectedTask && (
         <TaskDetails
-          task={userData.employees.find(e => e.id === selectedTask.empId).tasks[selectedTask.taskIdx]}
+          task={userData.employees.find(e => e.id === selectedTask.empId)?.tasks[selectedTask.taskIdx]}
           empId={selectedTask.empId}
           taskIdx={selectedTask.taskIdx}
           employees={userData.employees}
