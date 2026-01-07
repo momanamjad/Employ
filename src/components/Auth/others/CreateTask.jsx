@@ -12,11 +12,11 @@ const CreateTask = () => {
   const submitHandler = (e) => {
   e.preventDefault();
   const newTaskObj = {
-    taskTitle,
-    taskDescription,
-    taskDate,
-    AssignTo,
-    Category,
+    title: taskTitle,
+    description: taskDescription,
+    date: taskDate,
+    category: Category,
+    statusCode: 1,
     active: false,
     newTask: true,
     failed: false,
@@ -26,9 +26,7 @@ const CreateTask = () => {
   data.forEach((elem) => {
     if (AssignTo === elem.firstName) {
       elem.tasks.push(newTaskObj);
-      elem.taskCounts.newTask += 1; // Now safe
     }
-    console.log('Updated userData:', { ...userData, employees: data });
   });
   setUserData({ ...userData, employees: data }); // Update context
   localStorage.setItem("employees", JSON.stringify(data)); // Persist

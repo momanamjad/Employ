@@ -19,6 +19,15 @@ const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (user === 'employee' && userData && userData.employees && loggedInUserData) {
+      const updatedEmployee = userData.employees.find(e => e.email === loggedInUserData.email);
+      if (updatedEmployee) {
+        setLoggedInUserData(updatedEmployee);
+      }
+    }
+  }, [userData]);
+
 
   const handleLogin = (email, password) => {
     if (email == 'admin@me.com' && password == '123') {
