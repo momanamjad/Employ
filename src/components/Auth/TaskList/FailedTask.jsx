@@ -13,7 +13,7 @@ const FailedTask = ({data}) => {
            
         </p>
         <div>
-  <button className='w-full'>Failed/</button>   
+  <button className='w-full'>Failed</button>   
         </div>
       </div>
   )

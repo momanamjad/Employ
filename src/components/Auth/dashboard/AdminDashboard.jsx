@@ -5,7 +5,7 @@ import AllTask from '../others/AllTask';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AdminDashboard = (props) => {
-  const [userData] = useContext(AuthContext); // Access for loading check
+  const [userData] = useContext(AuthContext);
 
   return (
     <div className="h-screen w-full p-10">

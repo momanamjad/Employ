@@ -5,6 +5,10 @@ const NewTask = ({data, index, updateTask}) => {
     updateTask(index, { active: true, newTask: false })
   }
 
+  const handleReject = () => {
+    updateTask(index, { failed: true, newTask: false })
+  }
+
   return (
     <div className="shrink-0 h-full w-[300px] p-5 bg-yellow-400 rounded-xl">
       <div className="flex justify-between items-center">
@@ -15,8 +19,13 @@ const NewTask = ({data, index, updateTask}) => {
       <p className="text-sm mt-2">
         {data.description}
       </p>
-      <div className="mt-4">
-        <button onClick={handleAccept} className="bg-blue-500 text-white px-4 py-2 rounded">Accept the Task</button>
+      <div className="flex justify-between mt-4">
+        <button onClick={handleAccept} className="bg-blue-500 text-white px-2 py-1 rounded text-sm cursor-pointer">
+          Accept Task
+        </button>
+        <button onClick={handleReject} className="bg-red-500 text-white px-2 py-1 rounded text-sm cursor-pointer">
+          Reject Task
+        </button>
       </div>
     </div>
   );

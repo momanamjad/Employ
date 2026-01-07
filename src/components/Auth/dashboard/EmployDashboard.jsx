@@ -15,7 +15,7 @@ const EmployDashboard = ({ changeUser, data }) => {
           idx === taskIndex ? { ...task, ...updates } : task
         )
         const updatedEmployee = { ...employee, tasks: updatedTasks }
-        // Update loggedInUser
+ 
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
         localStorage.setItem('loggedInUser', JSON.stringify({ ...loggedInUser, data: updatedEmployee }))
         return updatedEmployee

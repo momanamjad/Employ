@@ -11,6 +11,15 @@ const CreateTask = () => {
   const [userData, setUserData] = useContext(AuthContext);
   const submitHandler = (e) => {
   e.preventDefault();
+  if (!taskTitle || !taskDescription || !taskDate || !AssignTo || !Category) {
+    alert("All fields are required");
+    return;
+  }
+  const employee = userData.employees.find((elem) => elem.firstName === AssignTo);
+  if (!employee) {
+    alert("Employee not found");
+    return;
+  }
   const newTaskObj = {
     title: taskTitle,
     description: taskDescription,
@@ -22,15 +31,15 @@ const CreateTask = () => {
     failed: false,
     completed: false,
   };
-  const data = [...userData.employees]; // Copy array
+  const data = [...userData.employees]; 
   data.forEach((elem) => {
     if (AssignTo === elem.firstName) {
       elem.tasks.push(newTaskObj);
     }
   });
-  setUserData({ ...userData, employees: data }); // Update context
-  localStorage.setItem("employees", JSON.stringify(data)); // Persist
-  // Reset form
+  setUserData({ ...userData, employees: data }); 
+  localStorage.setItem("employees", JSON.stringify(data)); 
+  
   setAssignTo("");
   setCategory("");
   setTaskDate("");
@@ -43,9 +52,9 @@ const CreateTask = () => {
         onSubmit={(e) => {
           submitHandler(e);
         }}
-        className="flex width-full flex-wrap  items-start justify-between"
+        className="flex w-full flex-wrap items-start justify-between"
       >
-        <div className="width-1/2">
+        <div className="w-1/2">
           <div>
             <h3 className="text-sm text-gray-300 mb-0.5 ">Task Title</h3>
             <input
@@ -72,16 +81,19 @@ const CreateTask = () => {
           </div>
           <div>
             <h3 className="text-sm text-gray-300 mb-0.5 ">Assign to </h3>
-            <input
+            <select
               required
-              type="text"
               value={AssignTo}
               onChange={(e) => {
                 setAssignTo(e.target.value);
               }}
-              placeholder="employ Name"
               className="text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400"
-            />
+            >
+              <option value="" className="bg-black">Select Employee</option>
+              {userData.employees.map((emp, idx) => (
+                <option key={idx} value={emp.firstName} className="bg-black">{emp.firstName}  ({emp.email})</option>
+              ))}
+            </select>
           </div>
           <div>
             <h3 className="text-sm text-gray-300 mb-0.5 ">Catagory</h3>

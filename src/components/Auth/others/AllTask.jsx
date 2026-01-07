@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AllTask = () => {
-  const [userData, setUserData] = useContext(AuthContext); // Destructure correctly
+  const [userData, setUserData] = useContext(AuthContext);
 
   if (!userData || !userData.employees || userData.employees.length === 0) {
     return <p className="text-white mt-10">No employee data available</p>;
