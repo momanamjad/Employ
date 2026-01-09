@@ -75,7 +75,7 @@ const AllTask = () => {
                           e.stopPropagation();
                           const select = e.target.previousElementSibling;
                           reassignTask(employee.id, taskIdx, select.value);
-                        }} className="bg-blue-500 text-white text-xs px-2 py-1 rounded">Reassign</button>
+                        }} className="bg-blue-500 text-white text-xs px-2 py-1 rounded">Assign to another employee</button>
                         <button onClick={(e) => {
                           e.stopPropagation();
                           removeTask(employee.id, taskIdx);
