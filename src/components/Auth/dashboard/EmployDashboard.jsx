@@ -8,6 +8,16 @@ import { AuthContext } from '../../../context/AuthProvider'
 const EmployDashboard = ({ changeUser, data }) => {
   const [userData, setUserData] = useContext(AuthContext)
 
+  // Add guard clause for missing data
+  if (!data) {
+    return (
+      <div className='p-10 bg-[rgb(28,28,28)] h-screen text-white'>
+        <p>Error: Employee data not found. Please log in again.</p>
+        <button onClick={() => changeUser(null)} className='mt-4 bg-red-600 text-white px-4 py-2 rounded'>Go Back to Login</button>
+      </div>
+    )
+  }
+
   const updateTask = (taskIndex, updates) => {
     const updatedEmployees = userData.employees.map(employee => {
       if (employee.email === data.email) {

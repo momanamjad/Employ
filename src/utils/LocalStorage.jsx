@@ -14,7 +14,8 @@ const employees = [
         failed: false,
         title: "Complete UI Design",
         description: "Design the login and dashboard UI",
-        category: "Design"
+        category: "Design",
+        date: "2024-01-15"
       },
       {
         statusCode: 3, // completed
@@ -24,7 +25,8 @@ const employees = [
         failed: false,
         title: "Fix Navbar Bug",
         description: "Resolve responsive navbar issue",
-        category: "Development"
+        category: "Development",
+        date: "2024-01-10"
       },
       {
         statusCode: 4, // failed
@@ -34,7 +36,8 @@ const employees = [
         failed: true,
         title: "API Integration",
         description: "Integrate user authentication API",
-        category: "Backend"
+        category: "Backend",
+        date: "2024-01-05"
       }
     ]
   },
@@ -53,7 +56,8 @@ const employees = [
         failed: false,
         title: "Create Product Cards",
         description: "Build reusable product card components",
-        category: "Frontend"
+        category: "Frontend",
+        date: "2024-01-18"
       },
       {
         statusCode: 3,
@@ -63,7 +67,8 @@ const employees = [
         failed: false,
         title: "Optimize Images",
         description: "Compress images for better performance",
-        category: "Optimization"
+        category: "Optimization",
+        date: "2024-01-12"
       },
       {
         statusCode: 1,
@@ -73,7 +78,8 @@ const employees = [
         failed: false,
         title: "Add Dark Mode",
         description: "Implement dark mode using Tailwind",
-        category: "UI/UX"
+        category: "UI/UX",
+        date: "2024-01-20"
       },
       {
         statusCode: 4,
@@ -83,7 +89,8 @@ const employees = [
         failed: true,
         title: "Payment Gateway",
         description: "Setup Stripe payment gateway",
-        category: "Integration"
+        category: "Integration",
+        date: "2024-01-08"
       }
     ]
   },
@@ -102,7 +109,8 @@ const employees = [
         failed: false,
         title: "Write Unit Tests",
         description: "Write unit tests for auth module",
-        category: "Testing"
+        category: "Testing",
+        date: "2024-01-22"
       },
       {
         statusCode: 3,
@@ -112,7 +120,8 @@ const employees = [
         failed: false,
         title: "Code Refactor",
         description: "Refactor old components",
-        category: "Maintenance"
+        category: "Maintenance",
+        date: "2024-01-09"
       },
       {
         statusCode: 1,
@@ -122,7 +131,8 @@ const employees = [
         failed: false,
         title: "Form Validation",
         description: "Add validation to forms",
-        category: "Frontend"
+        category: "Frontend",
+        date: "2024-01-19"
       }
     ]
   },
@@ -141,7 +151,8 @@ const employees = [
         failed: false,
         title: "Prepare Presentation",
         description: "Prepare project demo slides",
-        category: "Documentation"
+        category: "Documentation",
+        date: "2024-01-25"
       },
       {
         statusCode: 3,
@@ -151,7 +162,8 @@ const employees = [
         failed: false,
         title: "Client Feedback",
         description: "Review and apply client feedback",
-        category: "Communication"
+        category: "Communication",
+        date: "2024-01-11"
       },
       {
         statusCode: 4,
@@ -161,7 +173,8 @@ const employees = [
         failed: true,
         title: "Deployment",
         description: "Deploy app to production",
-        category: "DevOps"
+        category: "DevOps",
+        date: "2024-01-06"
       },
       {
         statusCode: 1,
@@ -171,7 +184,8 @@ const employees = [
         failed: false,
         title: "Bug Fixing",
         description: "Fix reported UI bugs",
-        category: "Debugging"
+        category: "Debugging",
+        date: "2024-01-21"
       }
     ]
   },
@@ -190,7 +204,8 @@ const employees = [
         failed: false,
         title: "Create Admin Panel",
         description: "Design admin dashboard layout",
-        category: "Admin"
+        category: "Admin",
+        date: "2024-01-24"
       },
       {
         statusCode: 3,
@@ -200,7 +215,8 @@ const employees = [
         failed: false,
         title: "User Roles",
         description: "Implement role-based access",
-        category: "Security"
+        category: "Security",
+        date: "2024-01-13"
       },
       {
         statusCode: 1,
@@ -210,7 +226,8 @@ const employees = [
         failed: false,
         title: "Search Feature",
         description: "Add search functionality",
-        category: "Feature"
+        category: "Feature",
+        date: "2024-01-23"
       }
     ]
   }

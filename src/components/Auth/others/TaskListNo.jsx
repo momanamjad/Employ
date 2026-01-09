@@ -1,6 +1,11 @@
 import React from "react";
 
 const TaskListNo = ({ data }) => {
+  // Add guard clause
+  if (!data || !data.tasks) {
+    return <div className="text-white mt-10">Loading task data...</div>;
+  }
+
   return (
     <div className="flex screen justify-between gap-5 ">
       <div className="w-[45%] py-6 px-9 bg-yellow-400 mt-10 rounded-xl    ">
