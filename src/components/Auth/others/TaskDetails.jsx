@@ -17,7 +17,7 @@ const TaskDetails = ({ task, empId, taskIdx, employees, onRemove, onReassign, on
 
   return (
     <div className="bg-gray-800 p-5 rounded mt-5">
-      <button onClick={onBack} className="bg-gray-600 text-white px-3 py-1 rounded mb-4">Back</button>
+      <button onClick={onBack} className="bg-gray-600 text-white px-3 py-1 rounded cursor-pointer mb-4">Back</button>
       <h3 className="text-xl font-semibold text-white mb-2">{task.title}</h3>
       <p className="text-gray-300 mb-2"><strong>Category:</strong> {task.category}</p>
       <p className="text-gray-300 mb-2"><strong>Date:</strong> {task.date}</p>

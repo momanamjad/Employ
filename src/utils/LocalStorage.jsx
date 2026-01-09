@@ -243,10 +243,11 @@ const admin = [
 ];
 
 export const setLocalStorage = () => {
-  if (!localStorage.getItem("employees")) {
+  // Only initialize with dummy data on first app load
+  const isFirstLoad = !localStorage.getItem("employees") && !localStorage.getItem("admin");
+  
+  if (isFirstLoad) {
     localStorage.setItem("employees", JSON.stringify(employees));
-  }
-  if (!localStorage.getItem("admin")) {
     localStorage.setItem("admin", JSON.stringify(admin));
   }
 };
