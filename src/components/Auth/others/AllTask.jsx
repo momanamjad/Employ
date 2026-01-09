@@ -56,7 +56,7 @@ const AllTask = () => {
           {userData.employees.map((employee, idx) => (
             <div key={idx} className="bg-gray-800 p-4 rounded cursor-pointer" onClick={() => setExpanded(prev => ({ ...prev, [employee.id]: !prev[employee.id] }))}>
               <h3 className="text-lg font-medium text-white flex justify-between">
-                {employee.firstName} ({employee.email})
+                {employee.firstName} 
                 <span>{expanded[employee.id] ? '▼' : '▶'}</span>
               </h3>
               <p className="text-sm text-gray-400">Tasks: {employee.tasks.length}</p>
