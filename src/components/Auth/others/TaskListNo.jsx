@@ -1,7 +1,7 @@
 import React from "react";
 
 const TaskListNo = ({ data }) => {
-  // Add guard clause
+
   if (!data || !data.tasks) {
     return <div className="text-white mt-10">Loading task data...</div>;
   }

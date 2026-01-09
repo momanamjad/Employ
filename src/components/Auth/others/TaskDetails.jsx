@@ -24,13 +24,13 @@ const TaskDetails = ({ task, empId, taskIdx, employees, onRemove, onReassign, on
       <p className="text-gray-300 mb-2"><strong>Description:</strong> {task.description}</p>
       <p className="text-gray-300 mb-4"><strong>Status:</strong> {task.active ? 'Active' : task.completed ? 'Completed' : task.failed ? 'Failed' : 'New'}</p>
       <div className="flex gap-2">
-        <select defaultValue={empId} className="bg-gray-700 text-white p-2 rounded">
+        <select defaultValue={empId} className="bg-gray-700 text-white p-2 rounded cursor-pointer">
           {employees.map(emp => (
             <option key={emp.id} value={emp.id}>{emp.firstName}</option>
           ))}
         </select>
-        <button onClick={handleReassign} className="bg-blue-500 text-white px-3 py-1 rounded">Reassign</button>
-        <button onClick={() => onRemove(empId, taskIdx)} className="bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+        <button onClick={handleReassign} className="bg-blue-500 text-white px-3 py-1 rounded cursor-pointer">Reassign</button>
+        <button onClick={() => onRemove(empId, taskIdx)} className="bg-red-500 text-white px-3 py-1 rounded cursor-pointer">Remove</button>
       </div>
     </div>
   );

@@ -7,7 +7,6 @@ import FailedTask from "./FailedTask";
 const TaskList = ({ data, updateTask }) => {
   console.log(data);
   
-  // Add guard clause
   if (!data || !data.tasks) {
     return <div className="text-white mt-10">No tasks available</div>;
   }
