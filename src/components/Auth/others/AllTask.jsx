@@ -79,7 +79,7 @@ const AllTask = () => {
                         <button onClick={(e) => {
                           e.stopPropagation();
                           removeTask(employee.id, taskIdx);
-                        }} className="bg-red-500 text-white text-xs px-2 py-1 rounded">Remove</button>
+                        }} className="bg-red-500 text-white text-xs px-2 py-1 rounded">Remove task</button>
                       </div>
                     </li>
                   ))}
